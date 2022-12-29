@@ -1,0 +1,10 @@
+papper ::= 0
+ribbon ::= 0
+
+for sizes of lines.map &.split('x').map +&
+  [l, w, h] := sizes.sort asc
+  [a, b, c] := [l * w, h * w, h * l]
+  papper += 2 * (a + b + c) + Math.min a, b, c
+  ribbon += 2 * (l + w) + l * w * h
+
+log papper, ribbon
