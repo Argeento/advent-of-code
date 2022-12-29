@@ -1,0 +1,15 @@
+sum1 ::= 0
+sum2 ::= 0
+
+for str of lines
+  if 
+    ((str.match(/[aeiou]/g) ?? []).length > 2) and
+    /(.)\1/.test(str) and
+    !['ab', 'cd', 'pq', 'xy'].some (x) => str.includes x
+
+    sum1 += 1
+
+  if /(..).*\1/.test(str) and /(.).\1/.test(str)
+    sum2 += 1
+
+log sum1, sum2
