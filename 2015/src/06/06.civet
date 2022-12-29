@@ -1,0 +1,24 @@
+arr1: boolean[][] := new Array(1000).fill('').map () => new Array 1000
+arr2 := new Array(1000).fill('').map () => new Array(1000).fill 0
+
+for line of lines
+  [x0, y0, x1, y1] := line.match(/\d+/g)!.map +&
+
+  for y of [y0..y1] for x of [x0..x1]  
+    if line.startsWith 'turn on'
+      arr1[y][x] = true 
+      arr2[y][x] += 1
+    if line.startsWith 'turn off'
+      arr1[y][x] = false 
+      arr2[y][x] -= 1 if arr2[y][x] > 0
+    if line.startsWith 'toggle'
+      arr1[y][x] = !arr1[y][x] 
+      arr2[y][x] += 2
+
+sum1 ::= 0
+sum2 ::= 0
+for y of [0..999] for x of [0..999]
+  sum1 += 1 if arr1[y][x] is true
+  sum2 += arr2[y][x]
+
+log sum1, sum2

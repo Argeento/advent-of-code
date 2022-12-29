@@ -10,3 +10,6 @@ export asc = (a: number, b: number) => a - b
 export log = (...args: any) => console.log(...args)
 export log1 = (arg: any) => log('Part 1:', arg)
 export log2 = (arg: any) => log('Part 2:', arg)
+
+export toNumber = (str: string) => parseFloat str.match(/\-?\d+(.\d+)?/)?.[0] || ''
+export toNumbers = (str: string) => (str.match(/\-?\d+(\.\d+)?/g) ?? []).map +&
