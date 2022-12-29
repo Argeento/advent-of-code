@@ -1,0 +1,24 @@
+type Houses = Record<string, number>
+
+move := (houses: Houses, santa: Point, dir: string) =>
+  switch dir
+    when '>' then santa.x++
+    when '<' then santa.x--
+    when 'v' then santa.y++
+    when '^' then santa.y--
+  key := `${santa.x},${santa.y}`
+  houses[key] ??= 0 
+  houses[key] += 1
+
+houses1: Houses := { '0,0': 1 }
+santa1 := x: 0, y: 0
+move houses1, santa1, dir for dir of inputArr
+
+houses2: Houses := { '0,0': 1 }
+santa2 := x: 0, y: 0
+santa3 := x: 0, y: 0
+move houses2, santa2, dir for dir of inputArr.filter (_,i) => i % 2
+move houses2, santa3, dir for dir of inputArr.filter (_,i) => !(i % 2)
+
+log Object.values(houses1).length
+log Object.values(houses2).length

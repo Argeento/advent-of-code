@@ -1,5 +1,6 @@
 // @ts-ignore
 export input = _input as string
+export inputArr = input.split ''
 export lines = input.split '\n'
 
 export add = (a: number, b: number) => a + b

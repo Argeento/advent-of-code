@@ -1,4 +1,5 @@
 declare var input: string;
+declare var inputArr: string[];
 declare var lines: string[];
 declare var add: (a: number, b: number) => number;
 declare var desc: (a: number, b: number) => number;
