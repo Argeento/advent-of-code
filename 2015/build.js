@@ -11,8 +11,9 @@ const _input = fs.readFileSync('./src/${day}/input.txt').toString()
 esbuild
   .build({
     entryPoints: [`./src/${day}/${day}.civet`],
-    bundle: true,
     outfile: 'run.js',
+    bundle: true,
+    platform: 'node',
     plugins: [civetPlugin],
     inject: ['./src/utils.civet'],
     banner: { js: importInputSnippet },

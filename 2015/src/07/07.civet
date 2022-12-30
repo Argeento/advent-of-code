@@ -1,0 +1,32 @@
+// @ts-nocheck
+_NOT := (n: number) => {
+  bin := [...n.toString(2).padStart 16, '0']
+  reverse := bin.map(& is '0' ? '1' : '0').join ''
+  parseInt reverse, 2
+}
+
+while global.a === undefined
+  // Part 2
+  // for line of ['16076 -> b', lines]
+  for line of lines
+    [left, right] ::= line.split(' -> ').map &.replace('do', 'aaa')
+      .replace('eq', 'bbb')
+      .replace('fs', 'ccc')
+      .replace('if', 'ddd')
+      .replace('in', 'eee')
+
+    continue if global[right] !== undefined
+
+    left = left.replace 'AND', '&'
+    left = left.replace 'OR', '|'
+    left = left.replace 'LSHIFT', '<<'
+    left = left.replace 'RSHIFT', '>>'
+    left = left.replace /NOT (\w*)/, '_NOT($1)'
+
+    hasKnownVars := left.match(/[a-z]+/g)?.every (x) => global[x] !== undefined
+    isDirectProvide := /^\d+$/.test(left)
+
+    if hasKnownVars or isDirectProvide 
+      eval `${right} = ${left}`
+
+log global.a
