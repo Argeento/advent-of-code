@@ -1,0 +1,7 @@
+p1 ::= ' '
+p1 += eval x for x of lines
+log input.length - lines.length - p1.length
+
+p2 ::= ''
+p2 += x.replace /["\\]/g, '--' for x of lines
+log 3 * lines.length + p2.length - input.length - 1
