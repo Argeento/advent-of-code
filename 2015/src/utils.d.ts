@@ -1,11 +1,12 @@
-declare var input: string
-declare var inputArr: string[]
-declare var lines: string[]
-declare var add: (a: number, b: number) => number
-declare var desc: (a: number, b: number) => number
-declare var asc: (a: number, b: number) => number
-declare var log: (...args: any) => void
-declare var log1: (arg: any) => void
-declare var log2: (arg: any) => void
-declare var toNumber: (str: string) => number
-declare var toNumbers: (str: string) => number[]
+declare let input: string;
+declare let inputArr: string[];
+declare let lines: string[];
+declare const add: (a: number, b: number) => number;
+declare const desc: (a: number, b: number) => number;
+declare const asc: (a: number, b: number) => number;
+declare const log: (...args: any) => void;
+declare const log1: (arg: any) => void;
+declare const log2: (arg: any) => void;
+declare const toNumber: (str: string) => number;
+declare const toNumbers: (str: string) => number[];
+declare const pairs: <T>(arr: T[]) => T[][];

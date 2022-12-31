@@ -1,15 +1,20 @@
 // @ts-ignore
-export input = _input as string
-export inputArr = input.split ''
-export lines = input.split '\n'
+export input ::= _input as string
+export inputArr ::= input.split ''
+export lines ::= input.split '\n'
 
-export add = (a: number, b: number) => a + b
-export desc = (a: number, b: number) => b - a
-export asc = (a: number, b: number) => a - b
+export add := (a: number, b: number) => a + b
+export desc := (a: number, b: number) => b - a
+export asc := (a: number, b: number) => a - b
 
-export log = (...args: any) => console.log(...args)
-export log1 = (arg: any) => log('Part 1:', arg)
-export log2 = (arg: any) => log('Part 2:', arg)
+export log := (...args: any) => console.log(...args)
+export log1 := (arg: any) => log('Part 1:', arg)
+export log2 := (arg: any) => log('Part 2:', arg)
 
-export toNumber = (str: string) => parseFloat str.match(/\-?\d+(.\d+)?/)?.[0] || ''
-export toNumbers = (str: string) => (str.match(/\-?\d+(\.\d+)?/g) ?? []).map +&
+export toNumber := (str: string) => parseFloat str.match(/\-?\d+(.\d+)?/)?.[0] || ''
+export toNumbers := (str: string) => (str.match(/\-?\d+(\.\d+)?/g) ?? []).map +&
+
+export pairs := <T>(arr: T[]) =>
+  tmp: T[][] := []
+  tmp.push [arr[i - 1], arr[i]] for i of [1..arr.length - 1]
+  tmp

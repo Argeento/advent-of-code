@@ -1,0 +1,15 @@
+say := (nr: string, depth = 1): number =>
+  out ::= ''
+  sum ::= 1
+
+  for [a, b] of pairs [...nr]
+    if a is b then sum++
+    else
+      out += sum + a
+      sum = 1
+
+  out += sum + nr[nr.length - 1]
+  depth is 1 ? out.length : say(out, depth - 1)
+
+log say input, 40
+log say input, 50
