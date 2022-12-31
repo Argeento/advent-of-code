@@ -1,3 +1,4 @@
+declare module 'heaps-permute'
 declare module '*.txt' {
   const _: string
   export default _

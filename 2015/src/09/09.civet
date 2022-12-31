@@ -1,0 +1,20 @@
+permute from 'heaps-permute'
+
+costs: Record<string, Record<string, number>> := {}
+min ::= Infinity
+max ::= -Infinity
+
+for line of lines
+  [a,,b,, cost] := line.split ' '
+  costs[a] ?= {}
+  costs[a][b] = +cost
+  costs[b] ?= {}
+  costs[b][a] = +cost
+
+for p of permute Object.keys costs
+  cost ::= 0
+  cost += costs[p[i - 1]][p[i]] for i of [1..p.length - 1]
+  min = cost if cost < min
+  max = cost if cost > max
+
+log min, max
