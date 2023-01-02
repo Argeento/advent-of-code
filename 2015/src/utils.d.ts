@@ -10,3 +10,5 @@ declare const log2: (arg: any) => void;
 declare const toNumber: (str: string) => number;
 declare const toNumbers: (str: string) => number[];
 declare const pairs: <T>(arr: T[]) => T[][];
+declare const ic: <T>(arr: T[]) => (readonly [T, number])[];
+declare const reverse: <T>(arr: T[]) => T[];

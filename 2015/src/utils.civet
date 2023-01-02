@@ -18,3 +18,6 @@ export pairs := <T>(arr: T[]) =>
   tmp: T[][] := []
   tmp.push [arr[i - 1], arr[i]] for i of [1..arr.length - 1]
   tmp
+
+export ic := <T>(arr: T[]) => arr.map (e, i) => [e, i] as const
+export reverse := <T>(arr: T[]) => [...arr].reverse()

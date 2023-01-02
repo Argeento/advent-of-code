@@ -1,0 +1,35 @@
+charToInt := (char: string) => char.charCodeAt(0) - 97
+intToChar := (int: number) => String.fromCharCode int + 97
+nextPass := (pass: string) =>
+  chars: string[] := []
+  overlap ::= 0
+  for [char, i] of ic reverse [...pass]
+    val ::=  overlap + charToInt char
+    val++ if i is 0
+    overlap = 0
+    if val > 25
+      overlap++
+      val = 0
+    chars.unshift intToChar val
+  chars.join ''
+
+checkIol := (pass: string) => !/[iol]/.test pass
+checkDouble := (pass: string) => /(.)\1.*(.)\2/.test pass
+checkTriple := (pass: string) =>
+  ints := [...pass].map charToInt
+  for i of [0..4]
+    if ints[i] + 1 is ints[i + 1] and ints[i] + 2 == ints[i + 2]
+      return true
+  false
+
+pass ::= input
+pass1 ::= ''
+pass2 ::= ''
+
+until pass2
+  pass = nextPass pass
+  if checkIol(pass) and checkDouble(pass) and checkTriple(pass)
+    pass2 = pass if pass1
+    pass1 = pass if pass1 is ''  
+
+log pass1, pass2
