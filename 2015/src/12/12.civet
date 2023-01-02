@@ -1,0 +1,12 @@
+travel := (x: any) =>
+  if typeof x is 'object' and !Array.isArray(x)
+    return 0 if Object.values(x).some & is 'red'
+
+  sum ::= 0
+  for v of Object.values x
+    sum += travel v if typeof v is 'object'
+    sum += v if typeof v is 'number'
+  sum
+
+log toNumbers(input).reduce add
+log travel JSON.parse input

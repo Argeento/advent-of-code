@@ -17,6 +17,7 @@ My solutions for [Advent of Code 2015](https://adventofcode.com/2015/) in [Civet
 |  9  |         [All in a Single Night][9]          | :star: | :star: |
 | 10  |         [Elves Look, Elves Say][10]         | :star: | :star: |
 | 11  |           [Corporate Policy][11]            | :star: | :star: |
+| 12  |         [JSAbacusFramework.io][12]          | :star: | :star: |
 
 ## The journey
 
@@ -324,6 +325,28 @@ log pass1, pass2
 
 ---
 
+### Day 12: JSAbacusFramework.io
+
+Quest: [adventofcode.com/2015/day/12](https://adventofcode.com/2015/day/12)
+
+```ts
+travel := (x: any) =>
+  if typeof x is 'object' and !Array.isArray(x)
+    return 0 if Object.values(x).some & is 'red'
+
+  sum ::= 0
+  for v of Object.values x
+    sum += travel v if typeof v is 'object'
+    sum += v if typeof v is 'number'
+  sum
+
+log toNumbers(input).reduce add
+log travel JSON.parse input
+
+```
+
+---
+
 [1]: #day-1-not-quite-lisp
 [2]: #day-2-i-was-told-there-would-be-no-math
 [3]: #day-3-perfectly-spherical-houses-in-a-vacuum
@@ -335,3 +358,4 @@ log pass1, pass2
 [9]: #day-9-all-in-a-single-night
 [10]: #day-10-elves-look,-elves-say
 [11]: #day-11-corporate-policy
+[12]: #day-12-jsabacusframework.io

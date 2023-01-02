@@ -15,6 +15,7 @@ const titles = [
   'All in a Single Night',
   'Elves Look, Elves Say',
   'Corporate Policy',
+  'JSAbacusFramework.io',
 ]
 
 const days = fs
