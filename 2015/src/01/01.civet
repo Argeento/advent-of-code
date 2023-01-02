@@ -1,9 +1,8 @@
 floor ::= 0
 basement ::= 0
 
-input.split('').forEach (char, i) => {
+input.split('').forEach (char, i) =>
   basement = i if !basement and floor is -1
   floor += char is '(' ? 1 : -1
-}
 
 log floor, basement
