@@ -18,6 +18,7 @@ My solutions for [Advent of Code 2015](https://adventofcode.com/2015/) in [Civet
 | 10  |         [Elves Look, Elves Say][10]         | :star: | :star: |
 | 11  |           [Corporate Policy][11]            | :star: | :star: |
 | 12  |         [JSAbacusFramework.io][12]          | :star: | :star: |
+| 13  |      [Knights of the Dinner Table][13]      | :star: | :star: |
 
 ## The journey
 
@@ -347,6 +348,44 @@ log travel JSON.parse input
 
 ---
 
+### Day 13: Knights of the Dinner Table
+
+Quest: [adventofcode.com/2015/day/13](https://adventofcode.com/2015/day/13)
+
+```ts
+permute from 'heaps-permute'
+
+happines: Record<string, Record<string, number>> := {}
+
+for line of lines
+  [person,,sign,nr,,,,,,,to] := line.slice(0, -1).split ' '
+  happines[person] ?= {}
+  happines[person][to] = sign is 'gain' ? +nr : -nr
+
+checkTable := (table: string[]) =>
+  sum ::= 0
+  for [person, i] of ic table
+    next := table[i + 1] or table[0]
+    prev := table[i - 1] or table[table.length - 1]
+    prevHappines := happines[person]?[prev] ?? 0
+    nextHappines := happines[person]?[next] ?? 0
+    sum += prevHappines + nextHappines
+  sum
+
+findMax := (ppl: string[]) =>
+  max ::= -Infinity
+  for table of permute ppl
+    sum := checkTable table
+    max = sum if sum > max
+  max
+
+ppl := Object.keys happines
+log findMax ppl
+log findMax [...ppl, 'me']
+```
+
+---
+
 [1]: #day-1-not-quite-lisp
 [2]: #day-2-i-was-told-there-would-be-no-math
 [3]: #day-3-perfectly-spherical-houses-in-a-vacuum
@@ -359,3 +398,4 @@ log travel JSON.parse input
 [10]: #day-10-elves-look,-elves-say
 [11]: #day-11-corporate-policy
 [12]: #day-12-jsabacusframework.io
+[13]: #day-13-knights-of-the-dinner-table

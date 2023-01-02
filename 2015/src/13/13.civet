@@ -1,0 +1,29 @@
+permute from 'heaps-permute'
+
+happines: Record<string, Record<string, number>> := {}
+
+for line of lines
+  [person,,sign,nr,,,,,,,to] := line.slice(0, -1).split ' '
+  happines[person] ?= {}
+  happines[person][to] = sign is 'gain' ? +nr : -nr
+
+checkTable := (table: string[]) =>
+  sum ::= 0
+  for [person, i] of ic table
+    next := table[i + 1] or table[0]
+    prev := table[i - 1] or table[table.length - 1]
+    prevHappines := happines[person]?[prev] ?? 0
+    nextHappines := happines[person]?[next] ?? 0
+    sum += prevHappines + nextHappines
+  sum
+
+findMax := (ppl: string[]) =>
+  max ::= -Infinity
+  for table of permute ppl
+    sum := checkTable table
+    max = sum if sum > max
+  max
+
+ppl := Object.keys happines
+log findMax ppl
+log findMax [...ppl, 'me']
