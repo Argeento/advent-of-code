@@ -4,6 +4,7 @@ declare let lines: string[];
 declare const add: (a: number, b: number) => number;
 declare const desc: (a: number, b: number) => number;
 declare const asc: (a: number, b: number) => number;
+declare const isDiv: (a: number, b: number) => boolean;
 declare const log: (...args: any) => void;
 declare const log1: (arg: any) => void;
 declare const log2: (arg: any) => void;

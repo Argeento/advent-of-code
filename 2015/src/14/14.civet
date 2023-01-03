@@ -1,0 +1,27 @@
+deers := lines.map ($) =>
+  [speed, flyTime, restTime] := toNumbers $
+  { 
+    speed,
+    flyTime,
+    restTime,
+    dist: 0,
+    points: 0,
+    flying: true,
+    nextFlyEnd: flyTime
+    nextRestEnd: -1
+  }
+
+for i of [0..2503]
+  for deer of deers
+    if deer.flying and i is deer.nextFlyEnd
+      deer.flying = false
+      deer.nextRestEnd = i + deer.restTime
+    if !deer.flying and i is deer.nextRestEnd
+      deer.flying = true
+      deer.nextFlyEnd = i + deer.flyTime
+    deer.dist += deer.speed if deer.flying
+  max := Math.max ...deers.map &.dist
+  deers.filter(&.dist is max).forEach(&.points++)
+
+log Math.max ...deers.map &.dist
+log Math.max ...deers.map &.points

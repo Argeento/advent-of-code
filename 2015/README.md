@@ -19,6 +19,7 @@ My solutions for [Advent of Code 2015](https://adventofcode.com/2015/) in [Civet
 | 11  |           [Corporate Policy][11]            | :star: | :star: |
 | 12  |         [JSAbacusFramework.io][12]          | :star: | :star: |
 | 13  |      [Knights of the Dinner Table][13]      | :star: | :star: |
+| 14  |           [Reindeer Olympics][14]           | :star: | :star: |
 
 ## The journey
 
@@ -30,10 +31,9 @@ Quest: [adventofcode.com/2015/day/1](https://adventofcode.com/2015/day/1)
 floor ::= 0
 basement ::= 0
 
-input.split('').forEach (char, i) => {
+input.split('').forEach (char, i) =>
   basement = i if !basement and floor is -1
   floor += char is '(' ? 1 : -1
-}
 
 log floor, basement
 ```
@@ -386,6 +386,42 @@ log findMax [...ppl, 'me']
 
 ---
 
+### Day 14: Reindeer Olympics
+
+Quest: [adventofcode.com/2015/day/14](https://adventofcode.com/2015/day/14)
+
+```ts
+deers := lines.map ($) =>
+  [speed, flyTime, restTime] := toNumbers $
+  {
+    speed,
+    flyTime,
+    restTime,
+    dist: 0,
+    points: 0,
+    flying: true,
+    nextFlyEnd: flyTime
+    nextRestEnd: -1
+  }
+
+for i of [0..2503]
+  for deer of deers
+    if deer.flying and i is deer.nextFlyEnd
+      deer.flying = false
+      deer.nextRestEnd = i + deer.restTime
+    if !deer.flying and i is deer.nextRestEnd
+      deer.flying = true
+      deer.nextFlyEnd = i + deer.flyTime
+    deer.dist += deer.speed if deer.flying
+  max := Math.max ...deers.map &.dist
+  deers.filter(&.dist is max).forEach(&.points++)
+
+log Math.max ...deers.map &.dist
+log Math.max ...deers.map &.points
+```
+
+---
+
 [1]: #day-1-not-quite-lisp
 [2]: #day-2-i-was-told-there-would-be-no-math
 [3]: #day-3-perfectly-spherical-houses-in-a-vacuum
@@ -399,3 +435,4 @@ log findMax [...ppl, 'me']
 [11]: #day-11-corporate-policy
 [12]: #day-12-jsabacusframework.io
 [13]: #day-13-knights-of-the-dinner-table
+[14]: #day-14-reindeer-olympics

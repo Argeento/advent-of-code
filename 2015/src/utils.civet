@@ -6,6 +6,7 @@ export lines ::= input.split '\n'
 export add := (a: number, b: number) => a + b
 export desc := (a: number, b: number) => b - a
 export asc := (a: number, b: number) => a - b
+export isDiv := (a: number, b: number) => a % b == 0
 
 export log := (...args: any) => console.log(...args)
 export log1 := (arg: any) => log('Part 1:', arg)
